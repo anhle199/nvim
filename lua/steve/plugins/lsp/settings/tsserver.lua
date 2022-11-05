@@ -1,27 +1,27 @@
-local util = require("lspconfig.util")
+local util = require('lspconfig.util')
 
-local bin_name = "typescript-language-server"
-local cmd = { bin_name, "--stdio" }
+local bin_name = 'typescript-language-server'
+local cmd = { bin_name, '--stdio' }
 
-if vim.fn.has "win32" == 1 then
-  cmd = { "cmd.exe", "/C", bin_name, "--stdio" }
+if vim.fn.has 'win32' == 1 then
+  cmd = { 'cmd.exe', '/C', bin_name, '--stdio' }
 end
 
 return {
   default_config = {
-    init_options = { hostInfo = "neovim" },
+    init_options = { hostInfo = 'neovim' },
     cmd = cmd,
     filetypes = {
-      "javascript",
-      "javascriptreact",
-      "javascript.jsx",
-      "typescript",
-      "typescriptreact",
-      "typescript.tsx",
+      'javascript',
+      'javascriptreact',
+      'javascript.jsx',
+      'typescript',
+      'typescriptreact',
+      'typescript.tsx',
     },
     root_dir = function(fname)
-      return util.root_pattern "tsconfig.json"(fname)
-        or util.root_pattern("package.json", "jsconfig.json", ".git")(fname)
+      return util.root_pattern 'tsconfig.json'(fname)
+        or util.root_pattern('package.json', 'jsconfig.json', '.git')(fname)
     end,
   },
   docs = {
@@ -54,7 +54,7 @@ Here's an example that disables type checking in JavaScript files.
 ```
 ]],
     default_config = {
-      root_dir = [[root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git")]],
+      root_dir = [[root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', '.git')]],
       on_init = [[function to handle changing offsetEncoding]],
       capabilities = [[default capabilities, with offsetEncoding utf-8]],
     },

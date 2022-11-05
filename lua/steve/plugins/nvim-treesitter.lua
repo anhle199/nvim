@@ -1,11 +1,11 @@
-local status, nvim_treesitter = pcall(require, "nvim-treesitter.configs")
+local status, nvim_treesitter = pcall(require, 'nvim-treesitter.configs')
 if not status then return end
 
 nvim_treesitter.setup {
-  -- A list of parser names, or "all"
+  -- A list of parser names, or 'all'
   ensure_installed = {
-    "bash", "c", "cpp", "css", "html", "javascript", "java", "lua", "python",
-    "rust", "typescript", "vim", "yaml", "json", "dockerfile", "sql",
+    'bash', 'c', 'cpp', 'css', 'html', 'javascript', 'java', 'lua', 'python',
+    'rust', 'typescript', 'vim', 'yaml', 'json', 'dockerfile', 'sql',
   },
   auto_install = true,
 

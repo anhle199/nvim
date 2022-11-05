@@ -5,8 +5,8 @@ local create_autocmd = vim.api.nvim_create_autocmd    -- Create autocommand
 --------------------------------------------------
 --                   GENERAL                    --
 --------------------------------------------------
-create_autocmd({ "FileType" }, {
-	pattern = { "qf", "help", "man", "lspinfo", "spectre_panel" },
+create_autocmd({ 'FileType' }, {
+	pattern = { 'qf', 'help', 'man', 'lspinfo', 'spectre_panel' },
 	callback = function()
 		vim.cmd([[
       nnoremap <silent> <buffer> q :close<CR>
@@ -15,26 +15,26 @@ create_autocmd({ "FileType" }, {
 	end,
 })
 
-create_autocmd({ "VimResized" }, {
+create_autocmd({ 'VimResized' }, {
 	callback = function()
-		vim.cmd("tabdo wincmd =")
+		vim.cmd('tabdo wincmd =')
 	end,
 })
 
 -- Remove whitespace on save
 create_autocmd('BufWritePre', {
   pattern = '*',
-  command = ":%s/\\s\\+$//e"
+  command = ':%s/\\s\\+$//e'
 })
 
 
 --------------------------------------------------
 --                  YANK HIGHLIGHT              --
 --------------------------------------------------
-create_autogroup("YankHighlight", { clear = true })
-create_autocmd({ "TextYankPost" }, {
+create_autogroup('YankHighlight', { clear = true })
+create_autocmd({ 'TextYankPost' }, {
 	callback = function()
-		vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
+		vim.highlight.on_yank({ higroup = 'Visual', timeout = 200 })
 	end,
 })
 
@@ -42,9 +42,9 @@ create_autocmd({ "TextYankPost" }, {
 --------------------------------------------------
 --                    ALPHA                     --
 --------------------------------------------------
-create_autocmd("User", {
-  pattern = "AlphaReady",
-  command = "set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2",
+create_autocmd('User', {
+  pattern = 'AlphaReady',
+  command = 'set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2',
 })
 
 
@@ -53,21 +53,21 @@ create_autocmd("User", {
 --                   TERMINAL                   --
 --------------------------------------------------
 -- -- Open a Terminal on the right tab
--- create_autocmd("CmdlineEnter", {
---   command = "command! Term :botright vsplit term://$SHELL"
+-- create_autocmd('CmdlineEnter', {
+--   command = 'command! Term :botright vsplit term://$SHELL'
 -- })
 --
 -- -- Enter insert mode when switching to terminal
--- create_autocmd("TermOpen", {
---   command = "setlocal listchars= nonumber norelativenumber nocursorline",
+-- create_autocmd('TermOpen', {
+--   command = 'setlocal listchars= nonumber norelativenumber nocursorline',
 -- })
--- create_autocmd("TermOpen", {
---   pattern = "*",
---   command = "startinsert"
+-- create_autocmd('TermOpen', {
+--   pattern = '*',
+--   command = 'startinsert'
 -- })
 --
 -- -- Close terminal buffer on process exit
--- create_autocmd("BufLeave", {
---   pattern = "term://*",
---   command = "stopinsert"
+-- create_autocmd('BufLeave', {
+--   pattern = 'term://*',
+--   command = 'stopinsert'
 -- })

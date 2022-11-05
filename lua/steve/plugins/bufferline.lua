@@ -1,10 +1,10 @@
-local status, bufferline = pcall(require, "bufferline")
+local status, bufferline = pcall(require, 'bufferline')
 if not status then return end
 
 bufferline.setup {
   options = {
-    mode = "tabs",
-    separator_style = "slant",
+    mode = 'tabs',
+    separator_style = 'slant',
     always_show_bufferline = false,
     show_buffer_close_icons = false,
     show_close_icon = false,
@@ -14,18 +14,18 @@ bufferline.setup {
   },
   highlights = {
     fill = {
-      bg = { attribute = "bg", highlight = "Tabline" },
+      bg = { attribute = 'bg', highlight = 'Tabline' },
     },
     buffer_selected = {
-      fg = "#04d42a",
+      fg = '#04d42a',
       bold = true,
       italic = true,
     },
     separator = {
-      fg = { attribute = "bg", highlight = "Tabline" },
+      fg = { attribute = 'bg', highlight = 'Tabline' },
     },
     separator_selected = {
-      fg = { attribute = "bg", highlight = "Tabline" },
+      fg = { attribute = 'bg', highlight = 'Tabline' },
     },
   },
 }
@@ -34,8 +34,8 @@ bufferline.setup {
 --------------------------------------------
 --                KEY MAPPINGS            --
 --------------------------------------------
-local Utils = require("steve.core.utils")
+local Utils = require('steve.core.utils')
 local nnoremap = Utils.nnoremap
 
-nnoremap("<Tab>", ":BufferLineCycleNext<CR>")
-nnoremap("<S-Tab>", ":BufferLineCyclePrev<CR>")
+nnoremap('<Tab>', ':BufferLineCycleNext<CR>')
+nnoremap('<S-Tab>', ':BufferLineCyclePrev<CR>')

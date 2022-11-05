@@ -1,4 +1,4 @@
-local status, null_ls = pcall(require, "null-ls")
+local status, null_ls = pcall(require, 'null-ls')
 if not status then return end
 
 local formatting = null_ls.builtins.formatting
@@ -18,7 +18,7 @@ null_ls.setup {
     formatting.stylua,
 
     -- python
-    -- formatting.black.with { extra_args = { "--fast" } },
+    -- formatting.black.with { extra_args = { '--fast' } },
     -- diagnostics.flake8,
   },
 }

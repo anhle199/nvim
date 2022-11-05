@@ -1,4 +1,4 @@
-local status_ok, nvim_tree = pcall(require, "nvim-tree")
+local status_ok, nvim_tree = pcall(require, 'nvim-tree')
 if not status_ok then
   return
 end
@@ -12,7 +12,7 @@ nvim_tree.setup {
   prefer_startup_root = true,
   view = {
     width = 32,
-    side = "left",
+    side = 'left',
   },
   renderer = {
     add_trailing = true,
@@ -25,9 +25,9 @@ nvim_tree.setup {
     },
     icons = {
       webdev_colors = true,
-      git_placement = "before",
-      padding = " ",
-      symlink_arrow = " ➛ ",
+      git_placement = 'before',
+      padding = ' ',
+      symlink_arrow = ' ➛ ',
       show = {
         file = true,
         folder = true,
@@ -35,27 +35,27 @@ nvim_tree.setup {
         git = true,
       },
       glyphs = {
-        default = "",
-        symlink = "",
-        bookmark = "",
+        default = '',
+        symlink = '',
+        bookmark = '',
         folder = {
-          arrow_closed = "",   -- 
-          arrow_open   = "",   -- 
-          default      = "",
-          open         = "",
-          empty        = "",
-          empty_open   = "",
-          symlink      = "",
-          symlink_open = "",
+          arrow_closed = '',   -- 
+          arrow_open   = '',   -- 
+          default      = '',
+          open         = '',
+          empty        = '',
+          empty_open   = '',
+          symlink      = '',
+          symlink_open = '',
         },
         git = {
-          unstaged = "✗",
-          staged = "✓",
-          unmerged = "",
-          renamed = "➜",
-          untracked = "★",
-          deleted = "",
-          ignored = "◌",
+          unstaged = '✗',
+          staged = '✓',
+          unmerged = '',
+          renamed = '➜',
+          untracked = '★',
+          deleted = '',
+          ignored = '◌',
         },
       },
     },
@@ -70,7 +70,7 @@ nvim_tree.setup {
   actions = {
     expand_all = {
       max_folder_discovery = 300,
-      exclude = { ".git", "target", "build", "node_modules", "dist", "__tests__", "logs" },
+      exclude = { '.git', 'target', 'build', 'node_modules', 'dist', '__tests__', 'logs' },
     },
     remove_file = {
       close_window = true,
@@ -78,7 +78,7 @@ nvim_tree.setup {
     use_system_clipboard = true,
   },
   live_filter = {
-    prefix = "[FILTER]: ",
+    prefix = '[FILTER]: ',
     always_show_folders = true,
   },
   log = {
