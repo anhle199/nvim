@@ -62,7 +62,7 @@ telescope.load_extension('file_browser')
 --                KEY MAPPINGS            --
 --------------------------------------------
 function vim.get_selected_text()
-  vim.cmd('noau normal! 'vy'')
+  vim.cmd('noau normal! "vy"')
   local text = vim.fn.getreg('v')
   vim.fn.setreg('v', {})
 

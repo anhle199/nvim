@@ -46,20 +46,20 @@ local function lsp_keymaps(bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', lhs, rhs, opts)
   end
 
-	-- buf_set_nnoremap('K', '<cmd>lua vim.lsp.buf.hover()<CR>')
- --  buf_set_nnoremap('gca', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-	-- buf_set_nnoremap('grn', '<cmd>lua vim.lsp.buf.rename()<CR>')
-	buf_set_nnoremap('<Space>f', '<cmd>lua vim.lsp.buf.format{ async = true }<CR>')
+	-- buf_set_nnoremap('K', '<Cmd>lua vim.lsp.buf.hover()<CR>')
+  -- buf_set_nnoremap('gca', '<Cmd>lua vim.lsp.buf.code_action()<CR>')
+	-- buf_set_nnoremap('grn', '<Cmd>lua vim.lsp.buf.rename()<CR>')
+	buf_set_nnoremap('<Space>f', '<Cmd>lua vim.lsp.buf.format{ async = true }<CR>')
 
- --  buf_set_nnoremap('<C-j>', '<cmd>lua vim.diagnostic.goto_next()<CR>')
-	-- buf_set_nnoremap('<C-k>', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-  -- buf_set_nnoremap('<Space>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
-	buf_set_nnoremap('<Space>D', '<cmd>lua vim.diagnostic.setloclist()<CR>')
+  -- buf_set_nnoremap('<C-j>', '<Cmd>lua vim.diagnostic.goto_next()<CR>')
+	-- buf_set_nnoremap('<C-k>', '<Cmd>lua vim.diagnostic.goto_prev()<CR>')
+  -- buf_set_nnoremap('<Space>d', '<Cmd>lua vim.diagnostic.open_float()<CR>')
+	buf_set_nnoremap('<Space>D', '<Cmd>lua vim.diagnostic.setloclist()<CR>')
 
-	buf_set_nnoremap('gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-	buf_set_nnoremap('gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
-	buf_set_nnoremap('gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-	buf_set_nnoremap('grf', '<cmd>lua vim.lsp.buf.references()<CR>')
+	buf_set_nnoremap('gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>')
+	buf_set_nnoremap('gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
+	buf_set_nnoremap('gi', '<Cmd>lua vim.lsp.buf.implementation()<CR>')
+	buf_set_nnoremap('grf', '<Cmd>lua vim.lsp.buf.references()<CR>')
 end
 
 local function format(bufnr)
