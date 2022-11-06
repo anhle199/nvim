@@ -92,7 +92,7 @@ M.on_attach = function(client, bufnr)
 	end
 
 	lsp_keymaps(bufnr)
-  lsp_format(bufnr)
+  -- lsp_format(bufnr) -- format on save
 end
 
 return M
