@@ -54,6 +54,7 @@ return packer.startup(function(use)
   use 'nvim-lualine/lualine.nvim' -- statusline
   use { 'akinsho/bufferline.nvim', tag = 'v3.*' } -- tabbar
   use 'lukas-reineke/indent-blankline.nvim'
+  use 'folke/zen-mode.nvim'
 
   -- Telescope
   use 'nvim-telescope/telescope.nvim'
