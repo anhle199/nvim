@@ -1,7 +1,11 @@
 local status, zenMode = pcall(require, 'zen-mode')
 if not status then return end
 
-zenMode.setup()
+zenMode.setup({
+  window = {
+    width = 0.8, -- 80%
+  },
+})
 
 
 -- Key mappings
