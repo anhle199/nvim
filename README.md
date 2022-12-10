@@ -2,6 +2,8 @@
 
 - Clone and place this repository in the directory `~/.config` (MacOS)
 
+## Font
+- [MesloLGS NF](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k)
 
 ## Required dependencies
 - [neovim](https://github.com/neovim/neovim) (version >= 0.7.0): `brew install neovim` (MacOS)
