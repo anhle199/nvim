@@ -55,6 +55,10 @@ return packer.startup(function(use)
   use { 'akinsho/bufferline.nvim', tag = 'v3.*' } -- tabbar
   use 'lukas-reineke/indent-blankline.nvim'
   use 'folke/zen-mode.nvim'
+  use {
+    'nvim-tree/nvim-tree.lua',
+    disable = true,
+  }
 
   -- Telescope
   use 'nvim-telescope/telescope.nvim'

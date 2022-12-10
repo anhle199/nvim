@@ -11,7 +11,7 @@ nvim_tree.setup {
   open_on_tab = true,
   prefer_startup_root = true,
   view = {
-    width = 32,
+    width = 40,
     side = 'left',
   },
   renderer = {
@@ -96,3 +96,10 @@ nvim_tree.setup {
     },
   },
 }
+
+
+-- Key mappings
+local Utils = require('steve.core.utils')
+local nnoremap = Utils.nnoremap
+
+nnoremap('<C-n>', ':NvimTreeToggle<CR>')

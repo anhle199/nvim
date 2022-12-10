@@ -24,7 +24,7 @@ opt.undofile = false -- Persistent undo (true: enable, false: disable)
 -- Theme, visibility
 opt.title = true
 opt.number = true -- Show line number
-opt.relativenumber = true
+opt.relativenumber = false
 opt.signcolumn = 'yes' -- Always show the sign column, otherwise it would shift the text each time
 opt.showmatch = true -- Highlight matching parenthesis
 opt.foldmethod = 'marker' -- Enable folding (default 'foldmarker')
