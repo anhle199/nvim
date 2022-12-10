@@ -1,6 +1,6 @@
 # Neovim configuration
 
-- Clone and place this repository in the directory `~/.config` (MacOS)
+- Downloads and places this repository in the directory `~/.config` (MacOS)
 
 ## Font
 - [MesloLGS NF](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k)
