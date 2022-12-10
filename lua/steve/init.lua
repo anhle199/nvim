@@ -32,7 +32,7 @@ require('steve.plugins.gitsigns')
 require('steve.plugins.nvim-cmp')
 require('steve.plugins.lsp')
 require('steve.plugins.indent_blankline')
-require('steve.plugins.zen-mode')
+-- require('steve.plugins.zen-mode')
 -- require('steve.plugins.nvim-tree')
 
 vim.api.nvim_command 'colorscheme onedark'
