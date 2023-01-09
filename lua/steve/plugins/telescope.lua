@@ -2,7 +2,7 @@ local status, telescope = pcall(require, 'telescope')
 if not status then return end
 
 local actions = require('telescope.actions')
-local fb_actions = require 'telescope'.extensions.file_browser.actions
+-- local fb_actions = require 'telescope'.extensions.file_browser.actions
 
 telescope.setup {
   defaults = {
@@ -25,37 +25,37 @@ telescope.setup {
     },
   },
   pickers = {},
-  extensions = {
-    file_browser = {
-      path = '%:p:h',  -- launchs in the current buffer
-      grouped = true,
-      respect_gitignore = false,
-      hidden = true,
-      initial_mode = 'normal',
-      -- disables netrw and use telescope-file-browser in its place
-      hijack_netrw = true,
-      mappings = {
-        ['i'] = {
-          ['C-c'] = function() vim.cmd('normal vbd') end,
-        },
-        ['n'] = {
-          ['a'] = fb_actions.create,
-          ['c'] = fb_actions.copy,
-          ['gp'] = fb_actions.goto_parent_dir,
-          ['/'] = function() vim.cmd('startinsert') end,
-          -- ['<C-/>'] = fb_acti
-
-          -- remove key mappings of fb_actions.goto_home_dir
-          ['?'] = false,
-          ['e'] = false,
-          ['C-e'] = false,
-        },
-      },
-    },
-  }
+  -- extensions = {
+  --   file_browser = {
+  --     path = '%:p:h',  -- launchs in the current buffer
+  --     grouped = true,
+  --     respect_gitignore = false,
+  --     hidden = true,
+  --     initial_mode = 'normal',
+  --     -- disables netrw and use telescope-file-browser in its place
+  --     hijack_netrw = true,
+  --     mappings = {
+  --       ['i'] = {
+  --         ['C-c'] = function() vim.cmd('normal vbd') end,
+  --       },
+  --       ['n'] = {
+  --         ['a'] = fb_actions.create,
+  --         ['c'] = fb_actions.copy,
+  --         ['gp'] = fb_actions.goto_parent_dir,
+  --         ['/'] = function() vim.cmd('startinsert') end,
+  --         -- ['<C-/>'] = fb_acti
+  --
+  --         -- remove key mappings of fb_actions.goto_home_dir
+  --         ['?'] = false,
+  --         ['e'] = false,
+  --         ['C-e'] = false,
+  --       },
+  --     },
+  --   },
+  -- }
 }
 
-telescope.load_extension('file_browser')
+-- telescope.load_extension('file_browser')
 
 
 --------------------------------------------
@@ -100,4 +100,4 @@ vnoremap('<C-l>', function()
 end)
 
 -- File browser
-nnoremap('<C-n>', ':Telescope file_browser<CR>')
+-- nnoremap('<C-n>', ':Telescope file_browser<CR>')

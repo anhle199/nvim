@@ -49,7 +49,6 @@ return packer.startup(function(use)
   }
 
   -- Visibility
-  use 'ellisonleao/gruvbox.nvim'
   use 'navarasu/onedark.nvim' -- theme/colorscheme
   use 'goolord/alpha-nvim' -- dashboard
   use 'nvim-lualine/lualine.nvim' -- statusline
@@ -59,14 +58,14 @@ return packer.startup(function(use)
     'folke/zen-mode.nvim',
     disable = true,
   }
-  use {
-    'nvim-tree/nvim-tree.lua',
-    disable = true,
-  }
+  use 'nvim-tree/nvim-tree.lua'
 
   -- Telescope
   use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-file-browser.nvim'
+  use {
+    'nvim-telescope/telescope-file-browser.nvim',
+    disable = true,
+  }
 
   -- Git
   use 'lewis6991/gitsigns.nvim'

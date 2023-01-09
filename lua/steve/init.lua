@@ -19,8 +19,7 @@ end
 
 -- load plugin configurations
 require('steve.plugins')
--- require('steve.plugins.onedark')
-require('steve.plugins.gruvbox')
+require('steve.plugins.onedark')
 require('steve.plugins.alpha-nvim')
 require('steve.plugins.lualine')
 require('steve.plugins.bufferline')
@@ -34,7 +33,6 @@ require('steve.plugins.nvim-cmp')
 require('steve.plugins.lsp')
 require('steve.plugins.indent_blankline')
 -- require('steve.plugins.zen-mode')
--- require('steve.plugins.nvim-tree')
+require('steve.plugins.nvim-tree')
 
--- vim.api.nvim_command 'colorscheme onedark'
-vim.api.nvim_command 'colorscheme gruvbox'
+vim.api.nvim_command 'colorscheme onedark'

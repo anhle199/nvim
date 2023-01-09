@@ -4,7 +4,6 @@ if not status_ok then
 end
 
 nvim_tree.setup {
-  create_in_closed_folder = true,
   hijack_cursor = true,
   disable_netrw = true,
   open_on_setup = true,
