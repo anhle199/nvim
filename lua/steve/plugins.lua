@@ -49,6 +49,7 @@ return packer.startup(function(use)
   }
 
   -- Visibility
+  use 'ellisonleao/gruvbox.nvim'
   use 'navarasu/onedark.nvim' -- theme/colorscheme
   use 'goolord/alpha-nvim' -- dashboard
   use 'nvim-lualine/lualine.nvim' -- statusline
