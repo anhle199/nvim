@@ -10,7 +10,7 @@ nvim_tree.setup {
   open_on_tab = true,
   prefer_startup_root = true,
   view = {
-    width = 40,
+    width = 36,
     side = 'left',
   },
   renderer = {
