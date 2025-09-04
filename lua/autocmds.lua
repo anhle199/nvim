@@ -1,9 +1,10 @@
+local autocmd = vim.api.nvim_create_autocmd
 local function augroup(name)
   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
 end
 
 -- resize splits if window got resized
-vim.api.nvim_create_autocmd({ "VimResized" }, {
+autocmd({ "VimResized" }, {
   group = augroup("resize_splits"),
   callback = function()
     local current_tab = vim.fn.tabpagenr()
@@ -13,7 +14,7 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 })
 
 -- close some filetypes with <q>
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
   group = augroup("close_with_q"),
   pattern = {
     "PlenaryTestPopup",
@@ -48,7 +49,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- make it easier to close man-files when opened inline
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
   group = augroup("man_unlisted"),
   pattern = { "man" },
   callback = function(event)
@@ -57,10 +58,37 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Fix conceallevel for json files
-vim.api.nvim_create_autocmd({ "FileType" }, {
+autocmd({ "FileType" }, {
   group = augroup("json_conceal"),
   pattern = { "json", "jsonc", "json5" },
   callback = function()
     vim.opt_local.conceallevel = 0
+  end,
+})
+
+
+-- user event that loads after UIEnter + only if file buf is there
+autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
+  group = vim.api.nvim_create_augroup("NvFilePost", { clear = true }),
+  callback = function(args)
+    local file = vim.api.nvim_buf_get_name(args.buf)
+    local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
+
+    if not vim.g.ui_entered and args.event == "UIEnter" then
+      vim.g.ui_entered = true
+    end
+
+    if file ~= "" and buftype ~= "nofile" and vim.g.ui_entered then
+      vim.api.nvim_exec_autocmds("User", { pattern = "FilePost", modeline = false })
+      vim.api.nvim_del_augroup_by_name "NvFilePost"
+
+      vim.schedule(function()
+        vim.api.nvim_exec_autocmds("FileType", {})
+
+        -- if vim.g.editorconfig then
+        --   require("editorconfig").config(args.buf)
+        -- end
+      end)
+    end
   end,
 })
