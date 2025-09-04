@@ -51,3 +51,6 @@ map("n", "<leader>x", "<C-W>c", { desc = "Delete Window", remap = true })
 -- tabs
 map("n", "<tab>", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<S-tab>", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+
+-- nvimtree
+map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
