@@ -1,9 +1,12 @@
+-- tmux: session -> window -> pane
+-- nvim: _______ -> tab    -> window -> buffer
+
 local map = vim.keymap.set
 local CmpUtils = require("utils.cmp")
 
-map("i", "jk", "<ESC>")
-map("n", ";", ":")
-map("n", "<leader>w", "<cmd> w <cr>")
+map("i", "jk", "<ESC>", { desc = "exit insert mode" })
+map("n", ";", ":", { desc = "enter command mode" })
+map("n", "<leader>w", "<cmd> w <cr>", { desc = "save file changes" })
 map("n", "<leader>q", "<cmd> q <cr>")
 map("n", "<leader>l", "<cmd> Lazy <cr>")
 map("v", "<BS>", '"_d')
@@ -21,7 +24,9 @@ map(
   { expr = true }
 )
 
--- indents
+-- better indents
+map("n", "<", "<<", { remap = true })
+map("n", ">", ">>", { remap = true })
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
@@ -43,14 +48,29 @@ map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search R
 map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 
--- windows, same as tmux <leader> is <A-w>
+-- buffers
+map("n", "<leader>bn", "<cmd>enew<CR>", { desc = "new buffer" })
+map("n", "<leader>b[", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+map("n", "<leader>b]", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
+--map("n", "<leader>bd", function() Snacks.bufdelete() end, { desc = "Delete Buffer" })
+--map("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete Other Buffers" })
+--map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
+
+-- windows
 map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
 map("n", "<leader>v", "<C-W>v", { desc = "Split Window Right", remap = true })
 map("n", "<leader>x", "<C-W>c", { desc = "Delete Window", remap = true })
+--Snacks.toggle.zoom():map("<leader>+")
 
 -- tabs
 map("n", "<tab>", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<S-tab>", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+--map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+--map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+
+-- floating window to find and select command
 
 -- nvimtree
+map("n", "<c-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
 map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
