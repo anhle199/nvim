@@ -26,17 +26,17 @@ M.options = {
     "prettier",
 
     -- python dev
-    "pyright",
-    "black",
-    "isort",
+    -- "pyright",
+    -- "black",
+    -- "isort",
 
     -- others
     "json-lsp",
 
     -- go
-    "gopls",
-    "goimports",
-    "gofumpt",
+    -- "gopls",
+    -- "goimports",
+    -- "gofumpt",
     -- "gomodifytags",
     -- "impl",
   }

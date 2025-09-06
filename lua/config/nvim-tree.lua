@@ -14,10 +14,10 @@ local function on_attach(buffer)
       buffer = buffer,
       noremap = true,
       silent = true,
-      nowait = true
+      nowait = true,
     })
   end
-  
+
   -- remove default mappings
   nomap("n", "g?")
   nomap("n", "<C-x>")
@@ -60,7 +60,6 @@ return {
       },
     },
     group_empty = true,
-    highlight_git = true,
     highlight_modified = "all",
   },
   git = {

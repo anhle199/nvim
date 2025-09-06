@@ -30,25 +30,6 @@ return {
     end,
   },
 
-  {
-    "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-    build = ":TSUpdate",
-    opts = function()
-      return require("config.nvim-treesitter")
-    end,
-  },
-
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "User FilePost",
-    opts = function()
-      return require("config.indent-blankline")
-    end,
-    main = "ibl",
-  },
-
   -- formatting
   { 
     "stevearc/conform.nvim",
@@ -70,12 +51,34 @@ return {
     end,
   },
 
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   config = function()
-  --     require "configs.lspconfig"
-  --   end,
-  -- },
+  {
+    "neovim/nvim-lspconfig",
+    event = "User FilePost",
+    config = function()
+      require("config.nvim-lspconfig").defaults()
+    end,
+  },
+  
+
   -- { "nvim-telescope/telescope.nvim", opts = require "configs.telescope" },
   -- { "hrsh7th/nvim-cmp", opts = require "configs.cmp" },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    build = ":TSUpdate",
+    opts = function()
+      return require("config.nvim-treesitter")
+    end,
+  },
+
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "User FilePost",
+    opts = function()
+      return require("config.indent-blankline")
+    end,
+    main = "ibl",
+  },
 }
