@@ -2,13 +2,13 @@ local M = {}
 local LspUtils = require("utils.lsp")
 
 local action_organize_imports = function()
-  vim.lsp.buf.code_action {
+  vim.lsp.buf.code_action({
     apply = true,
     context = {
       only = { "source.organizeImports" },
       diagnostics = {},
     },
-  }
+  })
 end
 
 -- export on_attach & capabilities
@@ -19,17 +19,25 @@ M.on_attach = function(client, buffer)
 
   map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
   map("n", "<leader>rn", require("utils.lsp.renamer"), "rename variable")
-  map("n", "<leader>rf", function() vim.lsp.buf.references() end, "references")
-  map("n", "<leader>d", function() vim.diagnostic.open_float() end, "floating diagnostic")
-  map("n", "<leader>D", function() vim.diagnostic.setloclist() end, "diagnostic setloclist")
-  map("n", "K", function() return vim.lsp.buf.hover() end, "Hover")
+  map("n", "<leader>rf", function()
+    vim.lsp.buf.references()
+  end, "references")
+  map("n", "<leader>d", function()
+    vim.diagnostic.open_float()
+  end, "floating diagnostic")
+  map("n", "<leader>D", function()
+    vim.diagnostic.setloclist()
+  end, "diagnostic setloclist")
+  map("n", "K", function()
+    return vim.lsp.buf.hover()
+  end, "Hover")
 
   if LspUtils.has(client, buffer, "definition") then
     map("n", "gd", vim.lsp.buf.definition, "Go to definition")
   end
 
   if LspUtils.has(client, buffer, "codeAction") then
-    map({"n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code Action")
+    map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code Action")
 
     if client.name == "vtsls" then
       map("n", "<leader>co", action_organize_imports, "organize imports")
@@ -39,17 +47,17 @@ M.on_attach = function(client, buffer)
       map("n", "<leader>co", action_organize_imports, "organize imports")
     end
   end
-  
+
   if client.name == "pyright" then
     client.server_capabilities.hoverProvider = false
   end
 
   if client.name == "yamlls" then
-    if vim.fn.has "nvim-0.10" == 0 then
+    if vim.fn.has("nvim-0.10") == 0 then
       client.server_capabilities.documentFormattingProvider = true
     end
   end
-  
+
   --{ "gr", vim.lsp.buf.references, desc = "References", nowait = true },
   --{ "gI", vim.lsp.buf.implementation, desc = "Goto Implementation" },
   --{ "gy", vim.lsp.buf.type_definition, desc = "Goto T[y]pe Definition" },
@@ -65,7 +73,7 @@ end
 
 -- disable semanticTokens
 M.on_init = function(client, _)
-  if client.supports_method "textDocument/semanticTokens" then
+  if client.supports_method("textDocument/semanticTokens") then
     client.server_capabilities.semanticTokensProvider = nil
   end
 end
@@ -105,9 +113,9 @@ M.defaults = function()
       runtime = { version = "LuaJIT" },
       workspace = {
         library = {
-          vim.fn.expand "$VIMRUNTIME/lua",
+          vim.fn.expand("$VIMRUNTIME/lua"),
           --vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
-          vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
+          vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
           "${3rd}/luv/library",
         },
       },
@@ -182,7 +190,7 @@ M.defaults = function()
         maxTsServerMemory = 1024,
       },
       preferences = {
-        includePackageJsonAutoImports = 'off',
+        includePackageJsonAutoImports = "off",
       },
       updateImportsOnFileMove = {
         enabled = "always",
@@ -269,7 +277,11 @@ M.defaults = function()
     --vim.lsp.config("gopls", { settings = gopls_settings })
     vim.lsp.enable({ "lua_ls", "html", "cssls", "vtsls", "jsonls", "yamlls" }) --, "pyright", "gopls" })
   else
-    require("lspconfig").lua_ls.setup({ capabilities = M.capabilities, on_init = M.on_init, settings = lua_lsp_settings })
+    require("lspconfig").lua_ls.setup({
+      capabilities = M.capabilities,
+      on_init = M.on_init,
+      settings = lua_lsp_settings,
+    })
     require("lspconfig").vtsls.setup({ capabilities = M.capabilities, on_init = M.on_init, settings = vtsls_settings })
     require("lspconfig").jsonls.setup({ capabilities = M.capabilities, on_init = M.on_init, settings = jsonls_settings })
     require("lspconfig").yamlls.setup({ capabilities = M.capabilities, on_init = M.on_init, settings = yamlls_settings })

@@ -14,16 +14,11 @@ map("x", "p", "'pgv\"' . v:register . 'y'", { remap = false, expr = true, desc =
 
 -- clear search and stop snippet on escape
 -- map("n", "<leader>ch", "<cmd>noh<CR>")
-map(
-  { "i", "n", "s" }, 
-  "<esc>", 
-  function()
-    vim.cmd("noh")
-    CmpUtils.actions.snippet_stop()
-    return "<esc>"
-  end,
-  { expr = true }
-)
+map({ "i", "n", "s" }, "<esc>", function()
+  vim.cmd("noh")
+  CmpUtils.actions.snippet_stop()
+  return "<esc>"
+end, { expr = true })
 
 -- better indents
 map("n", "<", "<<", { remap = true })
@@ -78,5 +73,5 @@ map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle windo
 
 -- conform
 map({ "n", "x" }, "<leader>m", function()
-    require("conform").format { lsp_fallback = true }
+  require("conform").format({ lsp_fallback = true })
 end)

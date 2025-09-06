@@ -15,8 +15,8 @@ local function get_text_at_range(range, position_encoding)
 end
 
 local function get_symbol_to_rename(cb)
-  local cword = vim.fn.expand "<cword>"
-  local clients = lsp.get_clients { bufnr = 0, method = "textDocument/rename" }
+  local cword = vim.fn.expand("<cword>")
+  local clients = lsp.get_clients({ bufnr = 0, method = "textDocument/rename" })
 
   if #clients == 0 then
     cb(cword)
@@ -25,12 +25,12 @@ local function get_symbol_to_rename(cb)
 
   -- Prefer clients that support prepareRename
   table.sort(clients, function(a, b)
-    return a:supports_method "textDocument/prepareRename" and not b:supports_method "textDocument/prepareRename"
+    return a:supports_method("textDocument/prepareRename") and not b:supports_method("textDocument/prepareRename")
   end)
 
   local client = clients[1]
 
-  if client:supports_method "textDocument/prepareRename" then
+  if client:supports_method("textDocument/prepareRename") then
     local params = lsp.util.make_position_params(0, client.offset_encoding)
 
     client:request("textDocument/prepareRename", params, function(err, result, _, _)
@@ -79,7 +79,7 @@ return function()
 
     vim.bo[buf].buftype = "prompt"
     vim.fn.prompt_setprompt(buf, "")
-    vim.api.nvim_input "A"
+    vim.api.nvim_input("A")
 
     vim.keymap.set({ "i", "n" }, "<Esc>", function()
       api.nvim_buf_delete(buf, { force = true })

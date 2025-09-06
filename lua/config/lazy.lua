@@ -1,8 +1,5 @@
 return {
   defaults = { lazy = true },
-  --install = {
-  --  colorscheme = { "catppuccin" }
-  --},
 
   ui = {
     icons = {

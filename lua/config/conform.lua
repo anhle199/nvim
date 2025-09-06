@@ -13,11 +13,11 @@ return {
     css = { "prettier" },
     html = { "prettier" },
     javascript = { "prettier", stop_after_first = true },
-    typescript = { 'prettier' },
-    javascriptreact = { 'prettier' },
-    typescriptreact = { 'prettier' },
-    svelte = { 'prettier' },
-    markdown = { 'prettier' },
+    typescript = { "prettier" },
+    javascriptreact = { "prettier" },
+    typescriptreact = { "prettier" },
+    svelte = { "prettier" },
+    markdown = { "prettier" },
     go = { "goimports", "gofumpt" },
   },
   formatters = {
@@ -28,8 +28,9 @@ return {
       prepend_args = { "--style=black" },
     },
     prettier = {
-      -- -- This is the key part:
+      -- This is the key part:
       -- conform.nvim will pass these arguments to the prettier CLI
+      -- stylua: ignore
       prepend_args = {
         "--no-semi",
         "--arrow-parens", "avoid",

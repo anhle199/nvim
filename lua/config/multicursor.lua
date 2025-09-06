@@ -15,39 +15,45 @@ local lineAddCursor = function(dir)
   end
 end
 
-local set = vim.keymap.set
+local map = vim.keymap.set
 
 -- Add or skip cursor above/below the main cursor.
-set({ "n", "v", "x" }, "<s-down>", function() lineAddCursor(1) end, { desc = 'Add cursor below' })
-set({ "n", "v", "x" }, "<s-up>", function() lineAddCursor(-1) end, { desc = 'Add cursor above' })
+map({ "n", "v", "x" }, "<s-down>", function()
+  lineAddCursor(1)
+end, { desc = "Add cursor below" })
+map({ "n", "v", "x" }, "<s-up>", function()
+  lineAddCursor(-1)
+end, { desc = "Add cursor above" })
 
 -- Add or skip adding a new cursor by matching word/selection
-set({ "n", "x" }, "<c-d>", function() mc.matchAddCursor(1) end, { desc = 'Match add cursor above' })
+map({ "n", "x" }, "<c-d>", function()
+  mc.matchAddCursor(1)
+end, { desc = "Match add cursor above" })
 -- set({ "n", "x" }, "<c-s-d>", function() mc.matchAddCursor(-1) end, { desc = 'Match add cursor below' })
-set({ "n", "x" }, "<c-a>", mc.matchAllAddCursors, { desc = 'Match all add cursors word/selection' })
+map({ "n", "x" }, "<c-a>", mc.matchAllAddCursors, { desc = "Match all add cursors word/selection" })
 
 -- Add and remove cursors with control + left click.
-set("n", "<c-leftmouse>", mc.handleMouse)
-set("n", "<c-leftdrag>", mc.handleMouseDrag)
-set("n", "<c-leftrelease>", mc.handleMouseRelease)
+map("n", "<c-leftmouse>", mc.handleMouse)
+map("n", "<c-leftdrag>", mc.handleMouseDrag)
+map("n", "<c-leftrelease>", mc.handleMouseRelease)
 
-set("n", "<leader>|", mc.alignCursors, { desc = 'Align cursors' })
-set("x", "M", mc.matchCursors, { desc = '[M]atch cursors by regex' })
-set("x", "S", mc.splitCursors, { desc = '[S]plit cursors by regex' })
-set("n", "<leader>gv", mc.restoreCursors, { desc = 'Restore cursors' })
+map("n", "<leader>|", mc.alignCursors, { desc = "Align cursors" })
+map("x", "M", mc.matchCursors, { desc = "[M]atch cursors by regex" })
+map("x", "S", mc.splitCursors, { desc = "[S]plit cursors by regex" })
+map("n", "<leader>gv", mc.restoreCursors, { desc = "Restore cursors" })
 
 -- Disable and enable cursors.
-set({ "n", "x" }, "<c-q>", mc.toggleCursor)
+map({ "n", "x" }, "<c-q>", mc.toggleCursor)
 
 -- Mappings defined in a keymap layer only apply when there are
 -- multiple cursors. This lets you have overlapping mappings.
 mc.addKeymapLayer(function(layerSet)
   -- Select a different cursor as the main one.
-  layerSet({ "n", "x" }, "<s-left>", mc.prevCursor, { desc = 'Jump prev cursor' })
-  layerSet({ "n", "x" }, "<s-right>", mc.nextCursor, { desc = 'Jump next cursor' })
+  layerSet({ "n", "x" }, "<s-left>", mc.prevCursor, { desc = "Jump prev cursor" })
+  layerSet({ "n", "x" }, "<s-right>", mc.nextCursor, { desc = "Jump next cursor" })
 
   -- Delete the main cursor.
-  layerSet({ "n", "x" }, "<s-x>", mc.deleteCursor, { desc = 'Delete cursor' })
+  layerSet({ "n", "x" }, "<s-x>", mc.deleteCursor, { desc = "Delete cursor" })
 
   -- Enable and clear cursors using escape.
   layerSet("n", "<esc>", function()

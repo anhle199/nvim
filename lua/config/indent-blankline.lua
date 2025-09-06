@@ -3,10 +3,10 @@ return {
     char = "│",
     tab_char = "│",
   },
-  scope = { 
+  scope = {
     -- enabled = false,
     char = "│",
-    show_start = false, 
+    show_start = false,
     show_end = false,
   },
   exclude = {

@@ -39,7 +39,7 @@ M.options = {
     -- "gofumpt",
     -- "gomodifytags",
     -- "impl",
-  }
+  },
 }
 
 M.override_configure = function(opts)

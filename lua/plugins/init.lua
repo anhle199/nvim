@@ -96,15 +96,13 @@ return {
         "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-nvim-lsp",
-        "https://codeberg.org/FelipeLema/cmp-async-path.git"
-      }
+        "https://codeberg.org/FelipeLema/cmp-async-path.git",
+      },
     },
     opts = function()
       return require("config.nvim-cmp")
     end,
   },
-
-  -- { "nvim-telescope/telescope.nvim", opts = require "configs.telescope" },
 
   -- others
   {
