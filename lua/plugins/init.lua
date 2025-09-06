@@ -31,12 +31,12 @@ return {
   },
 
   -- formatting
-  { 
+  {
     "stevearc/conform.nvim",
     opts = function()
       return require("config.conform")
     end,
-  }, 
+  },
 
   -- lsp stuff
   {
@@ -45,7 +45,7 @@ return {
     opts_extend = { "ensure_installed" },
     opts = function()
       return require("config.mason").options
-    end, 
+    end,
     config = function(_, opts)
       require("config.mason").override_configure(opts)
     end,
@@ -58,11 +58,55 @@ return {
       require("config.nvim-lspconfig").defaults()
     end,
   },
-  
+
+  -- load luasnips + cmp related in insert mode only
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      {
+        -- snippet plugin
+        "L3MON4D3/LuaSnip",
+        dependencies = "rafamadriz/friendly-snippets",
+        opts = { history = true, updateevents = "TextChanged,TextChangedI" },
+        config = function(_, opts)
+          require("luasnip").config.set_config(opts)
+          require("config.luasnip")
+        end,
+      },
+
+      -- autopairing of (){}[] etc
+      {
+        "windwp/nvim-autopairs",
+        opts = {
+          fast_wrap = {},
+          disable_filetype = { "TelescopePrompt", "vim" },
+        },
+        config = function(_, opts)
+          require("nvim-autopairs").setup(opts)
+
+          -- setup cmp for autopairs
+          local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+          require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+        end,
+      },
+
+      -- cmp sources plugins
+      {
+        "saadparwaiz1/cmp_luasnip",
+        "hrsh7th/cmp-nvim-lua",
+        "hrsh7th/cmp-nvim-lsp",
+        "https://codeberg.org/FelipeLema/cmp-async-path.git"
+      }
+    },
+    opts = function()
+      return require("config.nvim-cmp")
+    end,
+  },
 
   -- { "nvim-telescope/telescope.nvim", opts = require "configs.telescope" },
-  -- { "hrsh7th/nvim-cmp", opts = require "configs.cmp" },
 
+  -- others
   {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPost", "BufNewFile" },

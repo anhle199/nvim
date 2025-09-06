@@ -21,6 +21,7 @@ local function on_attach(buffer)
   -- remove default mappings
   nomap("n", "g?")
   nomap("n", "<C-x>")
+  nomap("n", "<tab>")
 
   map("n", "?", api.tree.toggle_help, "nvim tree: show help")
   map("n", "<C-h>", api.node.open.horizontal, "nvim tree: open in horizontal split")
