@@ -1,3 +1,31 @@
+local function on_attach(buffer)
+  local api = require("nvim-tree.api")
+
+  -- default mappings
+  api.config.mappings.default_on_attach(buffer)
+
+  local function nomap(mode, lhs)
+    vim.keymap.del(mode, lhs, { buffer = buffer })
+  end
+
+  local function map(mode, lhs, rhs, desc)
+    vim.keymap.set(mode, lhs, rhs, {
+      desc = desc,
+      buffer = buffer,
+      noremap = true,
+      silent = true,
+      nowait = true
+    })
+  end
+  
+  -- remove default mappings
+  nomap("n", "g?")
+  nomap("n", "<C-x>")
+
+  map("n", "?", api.tree.toggle_help, "nvim tree: show help")
+  map("n", "<C-h>", api.node.open.horizontal, "nvim tree: open in horizontal split")
+end
+
 return {
   filters = { dotfiles = false },
   disable_netrw = true,
@@ -8,7 +36,7 @@ return {
     update_root = false,
   },
   view = {
-    width = 36,
+    width = 40,
     preserve_window_proportions = true,
   },
   renderer = {
@@ -45,4 +73,5 @@ return {
       },
     },
   },
+  on_attach = on_attach,
 }

@@ -10,6 +10,7 @@ map("n", "<leader>w", "<cmd> w <cr>", { desc = "save file changes" })
 map("n", "<leader>q", "<cmd> q <cr>")
 map("n", "<leader>l", "<cmd> Lazy <cr>")
 map("v", "<BS>", '"_d')
+map("x", "p", "'pgv\"' . v:register . 'y'", { remap = false, expr = true, desc = "past without replace clipboard" })
 
 -- clear search and stop snippet on escape
 -- map("n", "<leader>ch", "<cmd>noh<CR>")
@@ -74,3 +75,8 @@ map("n", "<S-tab>", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 -- nvimtree
 map("n", "<c-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
 map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
+
+-- conform
+map({ "n", "x" }, "<leader>m", function()
+    require("conform").format { lsp_fallback = true }
+end)

@@ -6,14 +6,18 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    opts = require("config.nvim-tree"),
+    opts = function()
+      return require("config.nvim-tree")
+    end,
   },
 
   -- git stuff
   {
     "lewis6991/gitsigns.nvim",
     event = "User FilePost",
-    opts = require("config.gitsigns"),
+    opts = function()
+      return require("config.gitsigns")
+    end,
   },
 
   -- multiple cursors
@@ -31,13 +35,47 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
-    opts = require("config.nvim-treesitter"),
+    opts = function()
+      return require("config.nvim-treesitter")
+    end,
   },
 
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "User FilePost",
-    opts = require("config.indent-blankline"),
+    opts = function()
+      return require("config.indent-blankline")
+    end,
     main = "ibl",
   },
+
+  -- formatting
+  { 
+    "stevearc/conform.nvim",
+    opts = function()
+      return require("config.conform")
+    end,
+  }, 
+
+  -- lsp stuff
+  {
+    "mason-org/mason.nvim",
+    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+    opts_extend = { "ensure_installed" },
+    opts = function()
+      return require("config.mason").options
+    end, 
+    config = function(_, opts)
+      require("config.mason").override_configure(opts)
+    end,
+  },
+
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   config = function()
+  --     require "configs.lspconfig"
+  --   end,
+  -- },
+  -- { "nvim-telescope/telescope.nvim", opts = require "configs.telescope" },
+  -- { "hrsh7th/nvim-cmp", opts = require "configs.cmp" },
 }
