@@ -75,3 +75,11 @@ map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle windo
 map({ "n", "x" }, "<leader>m", function()
   require("conform").format({ lsp_fallback = true })
 end)
+
+-- telescope
+map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "search file contents and file names" })
+map("n", "<leader>fb", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "search text in current buffer" })
+map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "find files without hidden and ignore files" })
+map("n", "<leader>fh", "<cmd>Telescope find_files hidden=true<CR>", { desc = "find files with hidden" })
+map("n", "<leader>fi", "<cmd>Telescope find_files no_ignore=true<CR>", { desc = "find files with ignore" })
+map("n", "<leader>fa", "<cmd>Telescope find_files hidden=true no_ignore=true<CR>", { desc = "find all files" })

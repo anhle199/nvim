@@ -104,6 +104,15 @@ return {
     end,
   },
 
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    cmd = "Telescope",
+    opts = function()
+      return require("config.telescope")
+    end,
+  },
+
   -- others
   {
     "nvim-treesitter/nvim-treesitter",
