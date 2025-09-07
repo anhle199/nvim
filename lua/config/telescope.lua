@@ -1,23 +1,10 @@
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 local state = require("telescope.state")
-
-local find_command = function()
-  if 1 == vim.fn.executable("rg") then
-    return { "rg", "--files", "--color", "never", "-g", "!.git" }
-  elseif 1 == vim.fn.executable("fd") then
-    return { "fd", "--type", "f", "--color", "never", "-E", ".git" }
-  elseif 1 == vim.fn.executable("fdfind") then
-    return { "fdfind", "--type", "f", "--color", "never", "-E", ".git" }
-  elseif 1 == vim.fn.executable("find") and vim.fn.has("win32") == 0 then
-    return { "find", ".", "-type", "f" }
-  elseif 1 == vim.fn.executable("where") then
-    return { "where", "/r", ".", "*" }
-  end
-end
-
+local layout_strats = require("telescope.pickers.layout_strategies")
 local previewers = require("telescope.previewers")
 local Job = require("plenary.job")
+
 local disable_preview_on_binary_file_maker = function(filepath, bufnr, opts)
   filepath = vim.fn.expand(filepath)
   Job:new({
@@ -37,8 +24,6 @@ local disable_preview_on_binary_file_maker = function(filepath, bufnr, opts)
   }):sync()
 end
 
---local state = require("telescope.state")
-local layout_strats = require("telescope.pickers.layout_strategies")
 local toggle_layout_preview = function(prompt_bufnr)
   local picker = action_state.get_current_picker(prompt_bufnr)
   local status = state.get_status(picker.prompt_bufnr)
@@ -71,12 +56,26 @@ local toggle_layout_preview = function(prompt_bufnr)
     picker.layout_config[picker.__flex_strategy].prompt_position = new_pos
     picker.layout_config.flex[picker.__flex_strategy].prompt_position = new_pos
   elseif layout_strats._configurations[picker.layout_strategy].prompt_position then
-    local width = is_show_preview and 0.9 or 0.6
+    local width = is_show_preview and 0.9 or 0.5
     picker.layout_config.width = width
     picker.layout_config[picker.layout_strategy].width = width
   end
 
   picker:full_layout_update()
+end
+
+local find_command = function()
+  if 1 == vim.fn.executable("rg") then
+    return { "rg", "--files", "--color", "never", "-g", "!.git" }
+  elseif 1 == vim.fn.executable("fd") then
+    return { "fd", "--type", "f", "--color", "never", "-E", ".git" }
+  elseif 1 == vim.fn.executable("fdfind") then
+    return { "fdfind", "--type", "f", "--color", "never", "-E", ".git" }
+  elseif 1 == vim.fn.executable("find") and vim.fn.has("win32") == 0 then
+    return { "find", ".", "-type", "f" }
+  elseif 1 == vim.fn.executable("where") then
+    return { "where", "/r", ".", "*" }
+  end
 end
 
 return {
@@ -91,7 +90,7 @@ return {
         prompt_position = "top",
         preview_width = 0.6,
       },
-      width = 0.6,
+      width = 0.5,
       height = 0.9,
     },
     preview = {
@@ -175,6 +174,7 @@ return {
   pickers = {
     find_files = {
       find_command = find_command,
+      hidden = true,
     },
   },
 }

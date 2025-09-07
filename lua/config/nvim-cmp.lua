@@ -1,7 +1,10 @@
 local cmp = require("cmp")
 
 return {
-  completion = { completeopt = "menu,menuone" },
+  completion = {
+    completeopt = "menu,menuone",
+    autocomplete = false,
+  },
   view = {
     docs = {
       auto_open = false,
@@ -28,6 +31,16 @@ return {
     end, { "i", "s" }),
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-u>"] = cmp.mapping.scroll_docs(4),
+    ["<esc>"] = cmp.mapping.close(),
+
+    -- toggle completion menu
+    ["<c-space>"] = cmp.mapping(function()
+      if cmp.visible() then
+        cmp.close()
+      else
+        cmp.complete()
+      end
+    end, { "i" }),
 
     ["<CR>"] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Insert,
