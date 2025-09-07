@@ -81,3 +81,7 @@ map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "search file con
 map("n", "<leader>fb", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "search text in current buffer" })
 map("n", "<leader>ff", "<cmd>Telescope find_files hidden=true<CR>", { desc = "find files with hidden" })
 map("n", "<leader>fa", "<cmd>Telescope find_files hidden=true no_ignore=true<CR>", { desc = "find all files" })
+
+-- comment
+map("n", "\\\\", "gcc", { desc = "toggle comment", remap = true })
+map("v", "\\\\", "gc", { desc = "toggle comment", remap = true })
