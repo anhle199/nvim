@@ -1,9 +1,11 @@
 local cmp = require("cmp")
+local cmp_types = require("cmp.types")
+local autocomplete = { cmp_types.cmp.TriggerEvent.TextChanged }
 
 return {
   completion = {
     completeopt = "menu,menuone",
-    autocomplete = false,
+    autocomplete = autocomplete,
   },
   view = {
     docs = {
@@ -34,11 +36,15 @@ return {
     ["<esc>"] = cmp.mapping.close(),
 
     -- toggle completion menu
-    ["<c-space>"] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.close()
+    ["<c-space>"] = cmp.mapping(function(fallback)
+      if autocomplete == false then
+        if cmp.visible() then
+          cmp.close()
+        else
+          cmp.complete()
+        end
       else
-        cmp.complete()
+        fallback()
       end
     end, { "i" }),
 
@@ -88,7 +94,7 @@ return {
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(_, item)
-      local icons = require("config.icons-lspkind")
+      local icons = require("config.icons").kinds
       if icons[item.kind] then
         --item.kind = icons[item.kind] .. item.kind
         item.kind = icons[item.kind] .. " "

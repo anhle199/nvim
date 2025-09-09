@@ -59,6 +59,10 @@ local toggle_layout_preview = function(prompt_bufnr)
     local width = is_show_preview and 0.9 or 0.5
     picker.layout_config.width = width
     picker.layout_config[picker.layout_strategy].width = width
+
+    local height = is_show_preview and 0.9 or 0.6
+    picker.layout_config.height = height
+    picker.layout_config[picker.layout_strategy].height = height
   end
 
   picker:full_layout_update()
@@ -91,7 +95,7 @@ return {
         preview_width = 0.6,
       },
       width = 0.5,
-      height = 0.9,
+      height = 0.6,
     },
     preview = {
       filesize_limit = 1, -- MB

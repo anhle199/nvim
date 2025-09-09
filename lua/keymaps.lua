@@ -12,6 +12,17 @@ map("n", "<leader>l", "<cmd> Lazy <cr>")
 map("v", "<BS>", '"_d')
 map("x", "p", "'pgv\"' . v:register . 'y'", { remap = false, expr = true, desc = "past without replace clipboard" })
 
+-- toggle background
+-- dark -> catppuccin mocha
+-- light -> catppuccin latte
+map("n", "<leader>tt", function()
+  require("utils.theme").toggle_theme()
+end)
+-- refresh theme
+map("n", "<leader>tr", function()
+  require("utils.theme").refresh_background_from_config()
+end)
+
 -- clear search and stop snippet on escape
 -- map("n", "<leader>ch", "<cmd>noh<CR>")
 map({ "i", "n", "s" }, "<esc>", function()

@@ -6,7 +6,6 @@
 * [my nvchad starter](https://github.com/anhle199/nvchad-starter)
 
 ## Todo
-* colorscheme
 * [bufferline](https://github.com/akinsho/bufferline.nvim)
 * [lualine](https://github.com/nvim-lualine/lualine.nvim)
 * [noice](https://github.com/folke/noice.nvim)
