@@ -2,7 +2,6 @@
 -- nvim: _______ -> tab    -> window -> buffer
 
 local map = vim.keymap.set
-local CmpUtils = require("utils.cmp")
 
 map("i", "jk", "<ESC>", { desc = "exit insert mode" })
 map("n", ";", ":", { desc = "enter command mode" })
@@ -16,18 +15,18 @@ map("x", "p", "'pgv\"' . v:register . 'y'", { remap = false, expr = true, desc =
 -- dark -> catppuccin mocha
 -- light -> catppuccin latte
 map("n", "<leader>tt", function()
-  require("utils.theme").toggle_theme()
+  LazyVim.theme.toggle_theme()
 end)
 -- refresh theme
 map("n", "<leader>tr", function()
-  require("utils.theme").refresh_background_from_config()
+  LazyVim.theme.refresh_background_from_config()
 end)
 
 -- clear search and stop snippet on escape
 -- map("n", "<leader>ch", "<cmd>noh<CR>")
 map({ "i", "n", "s" }, "<esc>", function()
   vim.cmd("noh")
-  CmpUtils.actions.snippet_stop()
+  LazyVim.cmp.actions.snippet_stop()
   return "<esc>"
 end, { expr = true })
 
@@ -56,19 +55,15 @@ map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result
 map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 
 -- buffers
-map("n", "<leader>bn", "<cmd>enew<CR>", { desc = "new buffer" })
-map("n", "<leader>b[", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-map("n", "<leader>b]", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
---map("n", "<leader>bd", function() Snacks.bufdelete() end, { desc = "Delete Buffer" })
---map("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete Other Buffers" })
---map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
+-- map("n", "<leader>bn", "<cmd>enew<CR>", { desc = "new buffer" })
+-- map("n", "<leader>b[", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+-- map("n", "<leader>b]", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+-- map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
 
 -- windows
 map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
 map("n", "<leader>v", "<C-W>v", { desc = "Split Window Right", remap = true })
 map("n", "<leader>x", "<C-W>c", { desc = "Delete Window", remap = true })
---Snacks.toggle.zoom():map("<leader>+")
 
 -- tabs
 map("n", "<tab>", "<cmd>tabnext<cr>", { desc = "Next Tab" })

@@ -1,11 +1,3 @@
--- -- Example configuration table
--- local config = {
---   username = "anhle199",
---   theme = "gruvbox",
---   plugins = { "nvim-treesitter", "lualine.nvim" },
--- }
---
-
 local M = {}
 
 local config_path = vim.fn.stdpath("config") .. "/config.json"

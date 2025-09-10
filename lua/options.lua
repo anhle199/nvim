@@ -1,10 +1,55 @@
 local opt = vim.opt
 local g = vim.g
 
+-- Snacks animations
+-- Set to `false` to globally disable all snacks animations
+g.snacks_animate = true
+
+-- LazyVim picker to use.
+-- Can be one of: telescope, fzf
+-- Leave it to "auto" to automatically use the picker
+-- enabled with `:LazyExtras`
+g.lazyvim_picker = "auto"
+
+-- LazyVim completion engine to use.
+-- Can be one of: nvim-cmp, blink.cmp
+-- Leave it to "auto" to automatically use the completion engine
+-- enabled with `:LazyExtras`
+g.lazyvim_cmp = "auto"
+
+-- if the completion engine supports the AI source,
+-- use that instead of inline suggestions
+g.ai_cmp = true
+
+-- LazyVim root dir detection
+-- Each entry can be:
+-- * the name of a detector function like `lsp` or `cwd`
+-- * a pattern or array of patterns like `.git` or `lua`.
+-- * a function with signature `function(buf) -> string|string[]`
+g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
+
+-- Optionally setup the terminal to use
+-- This sets `vim.o.shell` and does some additional configuration for:
+-- * pwsh
+-- * powershell
+-- LazyVim.terminal.setup("pwsh")
+
+-- Set LSP servers to be ignored when used with `util.root.detectors.lsp`
+-- for detecting the LSP root
+g.root_lsp_ignore = { "copilot" }
+
+-- Hide deprecation warnings
+g.deprecation_warnings = false
+
+-- Show the current document symbols location from Trouble in lualine
+-- You can disable this for a buffer by setting `vim.b.trouble_lualine = false`
+g.trouble_lualine = true
+
 -------------------------------------- options ------------------------------------------
 opt.laststatus = 3
 opt.showmode = false
 opt.splitkeep = "screen"
+opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
 
 -- only set clipboard if not in ssh, to make sure the OSC 52
 -- integration works automatically. Requires Neovim >= 0.10.0
@@ -38,6 +83,7 @@ opt.splitbelow = true
 opt.splitright = true
 opt.timeoutlen = 400
 opt.undofile = false
+opt.wildmode = "longest:full,full" -- Command-line completion mode
 
 -- Backup/swap file
 opt.backup = false -- creates a backup file

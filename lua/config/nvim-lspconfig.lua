@@ -1,5 +1,4 @@
 local M = {}
-local LspUtils = require("utils.lsp")
 
 local action_organize_imports = function()
   vim.lsp.buf.code_action({
@@ -18,7 +17,7 @@ M.on_attach = function(client, buffer)
   end
 
   map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
-  map("n", "<leader>rn", require("utils.lsp.renamer"), "rename variable")
+  --map("n", "<leader>rn", require("utils.lsp.renamer"), "rename variable")
   map("n", "<leader>rf", function()
     vim.lsp.buf.references()
   end, "references")
@@ -32,11 +31,11 @@ M.on_attach = function(client, buffer)
     return vim.lsp.buf.hover()
   end, "Hover")
 
-  if LspUtils.has(client, buffer, "definition") then
+  if LazyVim.lsp.has(client, buffer, "definition") then
     map("n", "gd", vim.lsp.buf.definition, "Go to definition")
   end
 
-  if LspUtils.has(client, buffer, "codeAction") then
+  if LazyVim.lsp.has(client, buffer, "codeAction") then
     map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code Action")
 
     if client.name == "vtsls" then
@@ -99,7 +98,7 @@ M.capabilities.textDocument.completion.completionItem = {
 }
 
 M.defaults = function()
-  LspUtils.diagnostic_config()
+  LazyVim.lsp.diagnostic_config()
 
   vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)

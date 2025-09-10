@@ -20,14 +20,13 @@ vim.opt.rtp:prepend(lazypath)
 require("options")
 require("autocmds")
 require("keymaps")
-
-_G.LazyVim = require("utils")
+require("config")
 
 local lazy_config = require("config.lazy")
 require("lazy").setup("plugins", lazy_config)
 
 vim.cmd.colorscheme("catppuccin")
-require("utils.theme").refresh_background_from_config()
+LazyVim.theme.refresh_background_from_config()
 
 -- import multiple plugin directories
 -- require("lazy").setup(

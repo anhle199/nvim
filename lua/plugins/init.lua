@@ -3,6 +3,21 @@ return {
   "nvim-tree/nvim-web-devicons",
 
   {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = function()
+      return require("config.snacks").get_options()
+    end,
+    config = function(_, opts)
+      require("config.snacks").config(opts)
+    end,
+    keys = function()
+      return require("config.snacks").get_keymaps()
+    end,
+  },
+
+  {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
@@ -138,6 +153,21 @@ return {
     end,
   },
 
+  -- buffer line
+  {
+    "akinsho/bufferline.nvim",
+    event = "VeryLazy",
+    opts = function()
+      return require("config.bufferline").get_options()
+    end,
+    config = function(_, opts)
+      require("config.bufferline").config(opts)
+    end,
+    keys = function()
+      return require("config.bufferline").get_keymaps()
+    end,
+  },
+
   -- others
   {
     "nvim-treesitter/nvim-treesitter",
@@ -147,15 +177,6 @@ return {
     opts = function()
       return require("config.nvim-treesitter")
     end,
-  },
-
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "User FilePost",
-    opts = function()
-      return require("config.indent-blankline")
-    end,
-    main = "ibl",
   },
 
   -- Automatically add closing tags for HTML and JSX

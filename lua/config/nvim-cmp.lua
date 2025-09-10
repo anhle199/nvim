@@ -94,7 +94,7 @@ return {
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(_, item)
-      local icons = require("config.icons").kinds
+      local icons = LazyVim.config.icons.kinds
       if icons[item.kind] then
         --item.kind = icons[item.kind] .. item.kind
         item.kind = icons[item.kind] .. " "
