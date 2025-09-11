@@ -32,13 +32,42 @@ M.get_options = function()
 end
 
 M.get_keymaps = function()
-  -- stylua: ignore
   return {
-    { "<leader>.",  function() Snacks.scratch() end,          desc = "Toggle Scratch Buffer" },
-    { "<leader>S",  function() Snacks.scratch.select() end,   desc = "Select Scratch Buffer" },
-    { "<leader>bd", function() Snacks.bufdelete() end,        desc = "Delete Buffer" },
-    { "<leader>bo", function() Snacks.bufdelete.other() end,  desc = "Delete Other Buffers" },
-    { "<leader>+",  function() Snacks.zen.zoom() end,         desc = "Toggle Zoom" },
+    {
+      "<leader>.",
+      function()
+        Snacks.scratch()
+      end,
+      desc = "Toggle Scratch Buffer",
+    },
+    {
+      "<leader>S",
+      function()
+        Snacks.scratch.select()
+      end,
+      desc = "Select Scratch Buffer",
+    },
+    {
+      "<leader>q",
+      function()
+        Snacks.bufdelete()
+      end,
+      desc = "Delete Buffer",
+    },
+    {
+      "<leader>bo",
+      function()
+        Snacks.bufdelete.other()
+      end,
+      desc = "Delete Other Buffers",
+    },
+    {
+      "<leader>+",
+      function()
+        Snacks.zen.zoom()
+      end,
+      desc = "Toggle Zoom",
+    },
   }
 end
 

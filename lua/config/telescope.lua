@@ -125,6 +125,8 @@ return {
 
         ["j"] = actions.move_selection_next,
         ["k"] = actions.move_selection_previous,
+        ["<a-j>"] = actions.move_selection_next,
+        ["<a-k>"] = actions.move_selection_previous,
         ["<Down>"] = actions.move_selection_next,
         ["<Up>"] = actions.move_selection_previous,
         ["gg"] = actions.move_to_top,
@@ -155,6 +157,8 @@ return {
           opts = { expr = true },
         },
 
+        ["<a-j>"] = actions.move_selection_next,
+        ["<a-k>"] = actions.move_selection_previous,
         ["<Down>"] = actions.move_selection_next,
         ["<Up>"] = actions.move_selection_previous,
 

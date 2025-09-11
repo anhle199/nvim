@@ -3,10 +3,10 @@ local M = {}
 function M.get_options()
   return {
     options = {
-      -- stylua: ignore
-      close_command = function(n) Snacks.bufdelete(n) end,
-      -- stylua: ignore
-      right_mouse_command = function(n) Snacks.bufdelete(n) end,
+      close_command = function(n)
+        Snacks.bufdelete(n)
+      end,
+      right_mouse_command = function() end,
       diagnostics = "nvim_lsp",
       always_show_bufferline = true,
       diagnostics_indicator = function(_, _, diag)
@@ -45,6 +45,7 @@ function M.get_options()
         style = "underline",
       },
       max_name_length = 32,
+      sort_by = 'insert_at_end',
     },
   }
 end
@@ -64,11 +65,8 @@ end
 function M.get_keymaps()
   return {
     { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" },
-    -- { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete Non-Pinned Buffers" },
-    -- { "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete Buffers to the Right" },
-    -- { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete Buffers to the Left" },
-    { "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
-    { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
+    { "<tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
+    { "<s-tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
   }
 end
 

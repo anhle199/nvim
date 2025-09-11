@@ -6,7 +6,7 @@ local map = vim.keymap.set
 map("i", "jk", "<ESC>", { desc = "exit insert mode" })
 map("n", ";", ":", { desc = "enter command mode" })
 map("n", "<leader>w", "<cmd> w <cr>", { desc = "save file changes" })
-map("n", "<leader>q", "<cmd> q <cr>")
+-- map("n", "<leader>q", "<cmd> q <cr>")
 map("n", "<leader>l", "<cmd> Lazy <cr>")
 map("v", "<BS>", '"_d')
 map("x", "p", "'pgv\"' . v:register . 'y'", { remap = false, expr = true, desc = "past without replace clipboard" })
@@ -66,10 +66,10 @@ map("n", "<leader>v", "<C-W>v", { desc = "Split Window Right", remap = true })
 map("n", "<leader>x", "<C-W>c", { desc = "Delete Window", remap = true })
 
 -- tabs
-map("n", "<tab>", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-map("n", "<S-tab>", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
---map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
---map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+-- map("n", "<tab>", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+-- map("n", "<S-tab>", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+-- map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+-- map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 
 -- floating window to find and select command
 
