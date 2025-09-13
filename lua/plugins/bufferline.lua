@@ -1,7 +1,7 @@
-local M = {}
-
-function M.get_options()
-  return {
+return {
+  "akinsho/bufferline.nvim",
+  event = "VeryLazy",
+  opts = {
     options = {
       close_command = function(n)
         Snacks.bufdelete(n)
@@ -12,7 +12,7 @@ function M.get_options()
       diagnostics_indicator = function(_, _, diag)
         local icons = LazyVim.config.icons.diagnostics
         local ret = (diag.error and icons.Error .. diag.error .. " " or "")
-          .. (diag.warning and icons.Warn .. diag.warning or "")
+            .. (diag.warning and icons.Warn .. diag.warning or "")
         return vim.trim(ret)
       end,
       offsets = {
@@ -47,27 +47,21 @@ function M.get_options()
       max_name_length = 32,
       sort_by = 'insert_at_end',
     },
-  }
-end
-
-function M.config(opts)
-  require("bufferline").setup(opts)
-  -- Fix bufferline when restoring a session
-  vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete" }, {
-    callback = function()
-      vim.schedule(function()
-        pcall(nvim_bufferline)
-      end)
-    end,
-  })
-end
-
-function M.get_keymaps()
-  return {
+  },
+  config = function(_, opts)
+    require("bufferline").setup(opts)
+    -- Fix bufferline when restoring a session
+    vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete" }, {
+      callback = function()
+        vim.schedule(function()
+          pcall(nvim_bufferline)
+        end)
+      end,
+    })
+  end,
+  keys = {
     { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" },
-    { "<tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-    { "<s-tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
-  }
-end
-
-return M
+    { "<tab>",      "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
+    { "<s-tab>",    "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
+  },
+}

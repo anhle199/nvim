@@ -77,9 +77,12 @@ map("n", "<leader>x", "<C-W>c", { desc = "Delete Window", remap = true })
 map("n", "<c-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
 map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
 
--- conform
-map({ "n", "x" }, "<leader>m", function()
-  require("conform").format({ lsp_fallback = true })
+-- formatting
+-- map({ "n", "x" }, "<leader>m", function()
+--   require("conform").format({ lsp_fallback = true })
+-- end)
+map({ "n", "v", "x" }, "<leader>m", function()
+  LazyVim.format({ force = true })
 end)
 
 -- telescope
@@ -91,3 +94,16 @@ map("n", "<leader>fa", "<cmd>Telescope find_files hidden=true no_ignore=true<CR>
 -- comment
 map("n", "\\\\", "gcc", { desc = "toggle comment", remap = true })
 map("v", "\\\\", "gc", { desc = "toggle comment", remap = true })
+
+-- diagnostic
+local diagnostic_goto = function(next, severity)
+  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+  severity = severity and vim.diagnostic.severity[severity] or nil
+  return function()
+    go({ severity = severity })
+  end
+end
+map("n", "<leader>d", vim.diagnostic.open_float, { desc = "floating diagnostic" })
+map("n", "<leader>D", vim.diagnostic.setloclist, { desc = "diagnostic setloclist" })
+map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
+map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
