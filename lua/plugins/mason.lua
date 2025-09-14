@@ -1,6 +1,7 @@
 return {
   "mason-org/mason.nvim",
   cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+  version = "^1.0.0",
   opts_extend = { "ensure_installed" },
   opts = {
     PATH = "skip",
@@ -61,12 +62,6 @@ return {
       "gofumpt",
       -- "gomodifytags",
       -- "impl",
-
-      -- java
-      -- "google-java-format",
-      -- "java-language-server",
-      "jdtls",
-      -- "vscode-spring-boot-tools",
     },
   },
   config = function(_, opts)
@@ -85,6 +80,20 @@ return {
 
     mr.refresh(function()
       for _, tool in ipairs(opts.ensure_installed) do
+        -- local at_idx = string.find(tool, "@")
+        -- local package_name = tool
+        -- local version = nil
+        --
+        -- if at_idx ~= nil then
+        --   package_name = string.sub(tool, 0, at_idx - 1)
+        --   version = string.sub(tool, at_idx + 1)
+        -- end
+
+        -- local p = mr.get_package(package_name)
+        -- if not p:is_installed() then
+        --   p:install({ version = version })
+        -- end
+
         local p = mr.get_package(tool)
         if not p:is_installed() then
           p:install()
