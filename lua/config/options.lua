@@ -86,10 +86,10 @@ opt.undofile = false
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 
 -- Backup/swap file
-opt.backup = false -- creates a backup file
+opt.backup = false     -- creates a backup file
 opt.writebackup = true -- creates a backup file while it is being edited. The backup is removed after the file was successfully written
 opt.swapfile = true
-opt.confirm = true -- confirm to save changes before exiting modified buffer
+opt.confirm = true     -- confirm to save changes before exiting modified buffer
 
 -- interval for writing swap file to disk, also used by gitsigns
 opt.updatetime = 250
