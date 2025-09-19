@@ -74,8 +74,8 @@ map("n", "<leader>x", "<C-W>c", { desc = "Delete Window", remap = true })
 -- floating window to find and select command
 
 -- nvimtree
-map("n", "<c-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
-map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
+-- map("n", "<c-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
+-- map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
 
 -- formatting
 -- map({ "n", "x" }, "<leader>m", function()
@@ -86,10 +86,10 @@ map({ "n", "v", "x" }, "<leader>m", function()
 end)
 
 -- telescope
-map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "search file contents and file names" })
-map("n", "<leader>fb", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "search text in current buffer" })
-map("n", "<leader>ff", "<cmd>Telescope find_files hidden=true<CR>", { desc = "find files with hidden" })
-map("n", "<leader>fa", "<cmd>Telescope find_files hidden=true no_ignore=true<CR>", { desc = "find all files" })
+-- map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "search file contents and file names" })
+-- map("n", "<leader>fb", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "search text in current buffer" })
+-- map("n", "<leader>ff", "<cmd>Telescope find_files hidden=true<CR>", { desc = "find files with hidden" })
+-- map("n", "<leader>fa", "<cmd>Telescope find_files hidden=true no_ignore=true<CR>", { desc = "find all files" })
 
 -- comment
 map("n", "\\\\", "gcc", { desc = "toggle comment", remap = true })

@@ -3,10 +3,10 @@ local LazyUtil = require("lazy.core.util")
 ---@class lazyvim.util: LazyUtilCore
 ---@field config LazyVimConfig
 -- ---@field ui utils.ui
--- ---@field lsp utils.lsp
--- ---@field root utils.root
+---@field lsp utils.lsp
+---@field root utils.root
 -- ---@field terminal utils.terminal
--- ---@field format utils.format
+---@field format utils.format
 -- ---@field plugin utils.plugin
 -- ---@field extras utils.extras
 -- ---@field inject utils.inject
@@ -17,6 +17,7 @@ local LazyUtil = require("lazy.core.util")
 -- ---@field pick utils.pick
 ---@field cmp utils.cmp
 ---@field theme utils.theme
+---@field list utils.list
 local M = {}
 
 setmetatable(M, {
@@ -128,7 +129,7 @@ end
 
 function M.deprecate(old, new)
   M.warn(("`%s` is deprecated. Please use `%s` instead"):format(old, new), {
-    title = "AnhLeVim",
+    title = "HAVim",
     once = true,
     stacktrace = true,
     stacklevel = 6,
@@ -267,7 +268,7 @@ end
 for _, level in ipairs({ "info", "warn", "error" }) do
   M[level] = function(msg, opts)
     opts = opts or {}
-    opts.title = opts.title or "AnhLeVim"
+    opts.title = opts.title or "HAVim"
     return LazyUtil[level](msg, opts)
   end
 end

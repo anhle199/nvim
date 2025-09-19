@@ -62,12 +62,26 @@ return {
       "gofumpt",
       -- "gomodifytags",
       -- "impl",
+
+      -- java
+      "jdtls@v1.43.0",
+    },
+    registries = {
+      "github:anhle199/mason-registry",
+      "github:mason-org/mason-registry",
     },
   },
   config = function(_, opts)
     require("mason").setup(opts)
 
+    -- local packages = {
+    --   { name = 'jdtls', version = "v1.43.0" },
+    -- }
+
     local mr = require("mason-registry")
+    -- mr.refresh()
+    -- mason_util.install_pkgs(packages)
+
     mr:on("package:install:success", function()
       vim.defer_fn(function()
         -- trigger FileType event to possibly load this newly installed LSP server
@@ -80,23 +94,10 @@ return {
 
     mr.refresh(function()
       for _, tool in ipairs(opts.ensure_installed) do
-        -- local at_idx = string.find(tool, "@")
-        -- local package_name = tool
-        -- local version = nil
-        --
-        -- if at_idx ~= nil then
-        --   package_name = string.sub(tool, 0, at_idx - 1)
-        --   version = string.sub(tool, at_idx + 1)
-        -- end
-
-        -- local p = mr.get_package(package_name)
-        -- if not p:is_installed() then
-        --   p:install({ version = version })
-        -- end
-
-        local p = mr.get_package(tool)
+        local name, version = unpack(vim.split(tool, "@"))
+        local p = mr.get_package(name)
         if not p:is_installed() then
-          p:install()
+          p:install({ version = version })
         end
       end
     end)

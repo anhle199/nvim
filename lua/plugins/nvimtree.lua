@@ -36,6 +36,7 @@ local function on_attach(buffer)
 end
 
 return {
+  enabled = false,
   "nvim-tree/nvim-tree.lua",
   cmd = { "NvimTreeToggle", "NvimTreeFocus" },
   opts = {
