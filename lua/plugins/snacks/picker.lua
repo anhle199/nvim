@@ -48,18 +48,8 @@ return {
             },
           },
         },
-        projects = {
-          dev = { "~/dev", "~/.config" },
-          patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "package.json", "Makefile" },
-          win = {
-            input = {
-              keys = {
-                -- every action will always first change the cwd of the current tabpage to the project
-                -- ["<c-g>"] = { { "tcd", "picker_grep" }, mode = { "n", "i" } },
-                -- ["<c-r>"] = { { "tcd", "picker_recent" }, mode = { "n", "i" } },
-              },
-            },
-          },
+        grep = {
+          hidden = true,
         },
       },
     },
