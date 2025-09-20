@@ -1,5 +1,5 @@
 -- macos
-local trashCmd = "trash "
+local trashCmd = "trash"
 
 return {
   "folke/snacks.nvim",
@@ -39,8 +39,8 @@ return {
                   local jobs = {}
 
                   for _, path in ipairs(paths) do
-                    local jobId = vim.fn.jobstart(trashCmd .. path, {
-                      detach = true,
+                    local jobId = vim.fn.jobstart(trashCmd .. " " .. path, {
+                      detach = false,
                       on_stdout = function()
                         Snacks.bufdelete({ file = path, force = true })
                         Snacks.notify.info("Moved `" .. path .. " to trash`")
