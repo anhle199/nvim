@@ -7,7 +7,7 @@ map("i", "jk", "<ESC>", { desc = "exit insert mode" })
 map("n", ";", ":", { desc = "enter command mode" })
 map("n", "<leader>w", "<cmd> w <cr>", { desc = "save file changes" })
 -- map("n", "<leader>q", "<cmd> q <cr>")
-map("n", "<leader>l", "<cmd> Lazy <cr>")
+map("n", "<leader>lz", "<cmd> Lazy <cr>")
 map("v", "<BS>", '"_d')
 map("x", "p", "'pgv\"' . v:register . 'y'", { remap = false, expr = true, desc = "past without replace clipboard" })
 
@@ -104,6 +104,6 @@ local diagnostic_goto = function(next, severity)
   end
 end
 map("n", "<leader>d", vim.diagnostic.open_float, { desc = "floating diagnostic" })
-map("n", "<leader>D", vim.diagnostic.setloclist, { desc = "diagnostic setloclist" })
+-- map("n", "<leader>D", vim.diagnostic.setloclist, { desc = "diagnostic setloclist" })
 map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
 map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })

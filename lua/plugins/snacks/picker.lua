@@ -34,29 +34,52 @@ return {
           p:find()
         end,
       },
+      sources = {
+        files = {
+          hidden = true,
+        },
+        buffers = {
+          hidden = true,
+          win = {
+            input = {
+              keys = {
+                ["<c-x>"] = { "", mode = { "n", "i" } },
+              },
+            },
+          },
+        },
+        projects = {
+          dev = { "~/dev", "~/.config" },
+          patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "package.json", "Makefile" },
+          win = {
+            input = {
+              keys = {
+                -- every action will always first change the cwd of the current tabpage to the project
+                -- ["<c-g>"] = { { "tcd", "picker_grep" }, mode = { "n", "i" } },
+                -- ["<c-r>"] = { { "tcd", "picker_recent" }, mode = { "n", "i" } },
+              },
+            },
+          },
+        },
+      },
     },
   },
   -- stylua: ignore
   keys = {
-    { "<leader>fw", function() Snacks.picker.grep() end,         desc = "Grep (Root Dir)" },
-    { "<leader>ff", function() Snacks.picker.files() end,        desc = "Find Files (Root Dir)" },
-    { "<leader>fl", function() Snacks.picker.lines() end,        desc = "Buffer Lines" },
-    { "<leader>fb", function() Snacks.picker.buffers() end,      desc = "Buffers" },
-    { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
-    { "<leader>gl", function() Snacks.picker.git_log() end,      desc = "Git Log" },
-    { "<leader>gs", function() Snacks.picker.git_status() end,   desc = "Git Status" },
-    { "<leader>gd", function() Snacks.picker.git_diff() end,     desc = "Git Diff (Hunks)" },
-    -- { "<leader>fp",      function() Snacks.picker.projects() end,                                desc = "Projects" },
-    -- { "<leader>sd",      function() Snacks.picker.diagnostics() end,                             desc = "Diagnostics" },
-    -- { "<leader>sD",      function() Snacks.picker.diagnostics_buffer() end,                      desc = "Buffer Diagnostics" },
-    -- { "<leader>sl",      function() Snacks.picker.loclist() end,                                 desc = "Location List" },
-    -- { "<leader>sm",      function() Snacks.picker.marks() end,                                   desc = "Marks" },
-    -- { "<leader>sq",      function() Snacks.picker.qflist() end,                                  desc = "Quickfix List" },
-    { "<leader>fs", function() Snacks.picker.lsp_symbols() end,  desc = "LSP Symbols" },
-    -- { "<leader>ss", function() Snacks.picker.lsp_symbols({ filter = LazyVim.config.kind_filter }) end, desc = "LSP Symbols", has = "documentSymbol" },
-    -- { "gd",         function() Snacks.picker.lsp_definitions() end,       desc = "Goto Definition" },
-    -- { "gr",         function() Snacks.picker.lsp_references() end,        nowait = true,                  desc = "References" },
-    -- { "gI",         function() Snacks.picker.lsp_implementations() end,   desc = "Goto Implementation" },
-    -- { "gy",         function() Snacks.picker.lsp_type_definitions() end,  desc = "Goto T[y]pe Definition" },
+    -- finder: <leader>f
+    { "<leader>fw", function() Snacks.picker.grep() end,               desc = "Grep (Root Dir)" },
+    { "<leader>ff", function() Snacks.picker.files() end,              desc = "Find Files (Root Dir)" },
+    { "<leader>fl", function() Snacks.picker.lines() end,              desc = "Buffer Lines" },
+    { "<leader>fb", function() Snacks.picker.buffers() end,            desc = "Buffers" },
+    { "<leader>fp", function() Snacks.picker.projects() end,           desc = "Projects" },
+
+    -- git: <leader>g
+    { "<leader>gb", function() Snacks.picker.git_branches() end,       desc = "Git Branches" },
+    { "<leader>gl", function() Snacks.picker.git_log() end,            desc = "Git Log" },
+    { "<leader>gs", function() Snacks.picker.git_status() end,         desc = "Git Status" },
+    { "<leader>gd", function() Snacks.picker.git_diff() end,           desc = "Git Diff (Hunks)" },
+
+    { "<leader>D",  function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
+    -- { "<leader>d",      function() Snacks.picker.diagnostics() end,                             desc = "Projet Diagnostics" },
   },
 }

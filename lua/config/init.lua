@@ -3,6 +3,13 @@ _G.LazyVim = require("utils")
 ---@class LazyVimConfig: LazyVimOptions
 local M = {}
 
+---@type vim.wo|vim.bo
+M._options = {
+  indentexpr = vim.o.indentexpr,
+  foldmethod = vim.o.foldmethod,
+  foldexpr = vim.o.foldexpr,
+}
+
 LazyVim.config = M
 
 ---@class LazyVimOptions
@@ -11,6 +18,7 @@ local options = {
   -- colorscheme = function()
   --   require("catppuccin").load()
   -- end,
+
   -- stylua: ignore
   icons = {
     misc = {

@@ -34,7 +34,7 @@ g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 -- * powershell
 -- LazyVim.terminal.setup("pwsh")
 
--- Set LSP servers to be ignored when used with `util.root.detectors.lsp`
+-- Set LSP servers to be ignored when used with `utils.root.detectors.lsp`
 -- for detecting the LSP root
 g.root_lsp_ignore = { "copilot" }
 

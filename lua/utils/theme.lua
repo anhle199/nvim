@@ -1,3 +1,4 @@
+---@class utils.theme
 local M = {}
 
 local config_path = vim.fn.stdpath("config") .. "/config.json"

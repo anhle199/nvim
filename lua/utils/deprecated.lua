@@ -1,3 +1,4 @@
+---@class utils.deprecated
 local M = {}
 
 M.moved = {
@@ -13,10 +14,11 @@ M.moved = {
   ui = {
     statuscolumn = { "Snacks.statuscolumn" },
     bufremove = { "Snacks.bufdelete" },
+    foldexpr = { "LazyVim.treesitter.foldexpr", stacktrace = false },
     fg = {
       "{ fg = Snacks.util.color(...) }",
       fn = function(...)
-        return { fg = nil } --Snacks.util.color(...) }
+        return { fg = Snacks.util.color(...) }
       end,
     },
   },
@@ -28,7 +30,7 @@ function M.decorate(name, mod)
   if not M.moved[name] then
     return mod
   end
-  setmetatable(mod, {
+  return setmetatable(mod, {
     __call = function(_, ...)
       local to = M.moved[name].__call[1]
       LazyVim.deprecate("LazyVim." .. name, to)
@@ -38,7 +40,9 @@ function M.decorate(name, mod)
     __index = function(_, k)
       if M.moved[name][k] then
         local to = M.moved[name][k][1]
-        LazyVim.deprecate("LazyVim." .. name .. "." .. k, to)
+        LazyVim.deprecate("LazyVim." .. name .. "." .. k, to, {
+          stacktrace = M.moved[name][k].stacktrace,
+        })
         if M.moved[name][k].fn then
           return M.moved[name][k].fn
         end
@@ -52,7 +56,11 @@ end
 
 function M.lazygit()
   LazyVim.deprecate("LazyVim.lazygit", "Snacks.lazygit")
-  return nil --Snacks.lazygit
+  return Snacks.lazygit
+end
+
+function M.ui()
+  return M.decorate("ui", {})
 end
 
 function M.toggle()

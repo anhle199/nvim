@@ -40,7 +40,7 @@ return {
         return LazyVim.config.icons.ft[opts.filetype]
       end,
 
-      separator_style = "slope",
+      separator_style = "thick",
       indicator = {
         style = "underline",
       },
