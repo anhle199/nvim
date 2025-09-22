@@ -36,7 +36,21 @@ return {
       },
       sources = {
         files = {
+          cmd = "fd",
           hidden = true,
+          exclude = {
+            "**/.git/*",
+            "**/node_modules/*",
+            "**/dist/*",
+            "**/.next/*",
+            "**/.cache/*",
+            "**/*.class",
+            "**/bin/*",
+            "**/build/*",
+            "**/.gradle/*",
+            "**/.idea/*",
+            "**/.DS_Store",
+          },
         },
         buffers = {
           hidden = true,
@@ -51,6 +65,13 @@ return {
         grep = {
           hidden = true,
         },
+        -- git_status = {
+        --   preview = "none",
+        --   layout = {
+        --     preset = "sidebar",
+        --     preview = false,
+        --   },
+        -- },
       },
     },
   },
@@ -61,7 +82,6 @@ return {
     { "<leader>ff", function() Snacks.picker.files() end,              desc = "Find Files (Root Dir)" },
     { "<leader>fl", function() Snacks.picker.lines() end,              desc = "Buffer Lines" },
     { "<leader>fb", function() Snacks.picker.buffers() end,            desc = "Buffers" },
-    { "<leader>fp", function() Snacks.picker.projects() end,           desc = "Projects" },
 
     -- git: <leader>g
     { "<leader>gb", function() Snacks.picker.git_branches() end,       desc = "Git Branches" },

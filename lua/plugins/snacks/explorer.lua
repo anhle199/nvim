@@ -39,11 +39,12 @@ return {
                   local jobs = {}
 
                   for _, path in ipairs(paths) do
-                    local jobId = vim.fn.jobstart(trashCmd .. " " .. path, {
+                    local normalizedPath = vim.fn.fnameescape(path)
+                    local jobId = vim.fn.jobstart(trashCmd .. " " .. normalizedPath, {
                       detach = false,
                       on_stdout = function()
-                        Snacks.bufdelete({ file = path, force = true })
-                        Snacks.notify.info("Moved `" .. path .. " to trash`")
+                        Snacks.bufdelete({ file = normalizedPath, force = true })
+                        Snacks.notify.info("Moved `" .. normalizedPath .. "` to trash")
                       end,
                       on_stderror = function(_, data, _)
                         ---@type string[]
@@ -53,10 +54,10 @@ return {
                         end
                         local joinedErr = table.concat(err, "\n")
 
-                        Snacks.notify.error("Failed to move `" .. path .. " to trash`:\n- " .. joinedErr)
+                        Snacks.notify.error("Failed to move `" .. normalizedPath .. "` to trash:\n- " .. joinedErr)
                       end,
                       on_exit = function()
-                        Tree:refresh(vim.fs.dirname(path))
+                        Tree:refresh(vim.fs.dirname(normalizedPath))
                       end,
                     })
 
