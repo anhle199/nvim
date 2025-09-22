@@ -16,6 +16,23 @@ return {
             matcher = {
               fuzzy = true,
             },
+            hidden = true,
+            ignored = true,
+            exclude = {
+              ".git",
+              "node_modules",
+              "dist",
+              ".next",
+              ".cache",
+              "*.class",
+              "bin",
+              "build",
+              ".settings",
+              ".gradle",
+              "gradle",
+              ".idea",
+              ".DS_Store",
+            },
             win = {
               list = {
                 keys = {

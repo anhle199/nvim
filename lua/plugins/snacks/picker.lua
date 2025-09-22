@@ -38,22 +38,26 @@ return {
         files = {
           cmd = "fd",
           hidden = true,
+          ignored = true,
           exclude = {
-            "**/.git/*",
-            "**/node_modules/*",
-            "**/dist/*",
-            "**/.next/*",
-            "**/.cache/*",
-            "**/*.class",
-            "**/bin/*",
-            "**/build/*",
-            "**/.gradle/*",
-            "**/.idea/*",
-            "**/.DS_Store",
+            ".git",
+            "node_modules",
+            "dist",
+            ".next",
+            ".cache",
+            "*.class",
+            "bin",
+            "build",
+            ".settings",
+            ".gradle",
+            "gradle",
+            ".idea",
+            ".DS_Store",
           },
         },
         buffers = {
           hidden = true,
+          unloaded = false,
           win = {
             input = {
               keys = {
@@ -64,6 +68,22 @@ return {
         },
         grep = {
           hidden = true,
+          ignored = true,
+          exclude = {
+            ".git",
+            "node_modules",
+            "dist",
+            ".next",
+            ".cache",
+            "*.class",
+            "bin",
+            "build",
+            ".settings",
+            ".gradle",
+            "gradle",
+            ".idea",
+            ".DS_Store",
+          },
         },
         -- git_status = {
         --   preview = "none",
@@ -78,18 +98,21 @@ return {
   -- stylua: ignore
   keys = {
     -- finder: <leader>f
-    { "<leader>fw", function() Snacks.picker.grep() end,               desc = "Grep (Root Dir)" },
-    { "<leader>ff", function() Snacks.picker.files() end,              desc = "Find Files (Root Dir)" },
-    { "<leader>fl", function() Snacks.picker.lines() end,              desc = "Buffer Lines" },
-    { "<leader>fb", function() Snacks.picker.buffers() end,            desc = "Buffers" },
+    { "<leader>fw", function() Snacks.picker.grep() end,                                                   desc = "Grep (Root Dir)" },
+    { "<leader>fW", function() Snacks.picker.grep_buffers() end,                                           desc = "Grep (Root Dir)" },
+    { "<leader>ff", function() Snacks.picker.files() end,                                                  desc = "Find Files (Root Dir)" },
+    { "<leader>fl", function() Snacks.picker.lines() end,                                                  desc = "Buffer Lines" },
+    { "<leader>fb", function() Snacks.picker.buffers() end,                                                desc = "Buffers" },
 
     -- git: <leader>g
-    { "<leader>gb", function() Snacks.picker.git_branches() end,       desc = "Git Branches" },
-    { "<leader>gl", function() Snacks.picker.git_log() end,            desc = "Git Log" },
-    { "<leader>gs", function() Snacks.picker.git_status() end,         desc = "Git Status" },
-    { "<leader>gd", function() Snacks.picker.git_diff() end,           desc = "Git Diff (Hunks)" },
+    { "<leader>gb", function() Snacks.picker.git_branches() end,                                           desc = "Git Branches" },
+    { "<leader>gl", function() Snacks.picker.git_log() end,                                                desc = "Git Log" },
+    { "<leader>gs", function() Snacks.picker.git_status() end,                                             desc = "Git Status" },
+    { "<leader>gd", function() Snacks.picker.git_diff() end,                                               desc = "Git Diff (Hunks)" },
 
-    { "<leader>D",  function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
+    { "<leader>D",  function() Snacks.picker.diagnostics_buffer() end,                                     desc = "Buffer Diagnostics" },
     -- { "<leader>d",      function() Snacks.picker.diagnostics() end,                             desc = "Projet Diagnostics" },
+
+    { "<leader>td", function() Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } }) end, desc = "Todo/Fix/Fixme" },
   },
 }
